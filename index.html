@@ -33,6 +33,10 @@
 </head>
 <body class="flex items-center justify-center min-h-screen p-4 overflow-hidden select-none">
 
+    <!-- Background Music Element -->
+    <!-- Place your audio file (e.g., song.mp3) in the same GitHub folder and update the src name if needed -->
+    <audio id="bgMusic" src="song.mp3" loop></audio>
+
     <!-- Main Container simulating a mobile screen -->
     <div class="w-full max-w-md h-[85vh] bg-pink-100 rounded-3xl shadow-2xl border-4 border-white relative flex flex-col justify-between p-6 overflow-hidden">
         
@@ -109,9 +113,17 @@
 
     </div>
 
-    <!-- Simple Page Control Scripts -->
+    <!-- Page Interaction Control Scripts -->
     <script>
         function nextPage(pageNumber) {
+            // Trigger music playback on the first transition
+            if (pageNumber === 2) {
+                const music = document.getElementById('bgMusic');
+                music.play().catch(error => {
+                    console.log("Audio autoplay restriction handled:", error);
+                });
+            }
+
             document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
             document.getElementById(`page${pageNumber}`).classList.add('active');
         }
