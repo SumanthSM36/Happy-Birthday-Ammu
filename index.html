@@ -4,149 +4,149 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Amrutha ❤️</title>
-    <!-- Tailwind CSS for sleek styling -->
+
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@400;600&display=swap');
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #ffeef2;
+
+        body{
+            font-family:'Poppins',sans-serif;
+            background:#ffeef2;
         }
-        .handwritten {
-            font-family: 'Caveat', cursive;
-        }
-        .page {
-            display: none;
-        }
-        .page.active {
-            display: flex;
-        }
-        .balloon {
-            transition: transform 0.2s, opacity 0.2s;
-        }
-        .balloon.popped {
-            transform: scale(0);
-            opacity: 0;
-            pointer-events: none;
+
+        .handwritten{font-family:'Caveat',cursive;}
+        .page{display:none;}
+        .page.active{display:flex;}
+        .balloon{transition:transform .2s,opacity .2s;}
+        .balloon.popped{
+            transform:scale(0);
+            opacity:0;
+            pointer-events:none;
         }
     </style>
 </head>
+
 <body class="flex items-center justify-center min-h-screen p-4 overflow-hidden select-none">
 
-    <!-- Background Music Element -->
-    <!-- Place your audio file (e.g., song.mp3) in the same GitHub folder and update the src name if needed -->
-    <audio id="bgMusic" src="song.mp3" loop></audio>
+    <!-- Background music -->
+    <audio id="bgMusic" preload="auto" loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
 
-    <!-- Main Container simulating a mobile screen -->
     <div class="w-full max-w-md h-[85vh] bg-pink-100 rounded-3xl shadow-2xl border-4 border-white relative flex flex-col justify-between p-6 overflow-hidden">
-        
-        <!-- SCREEN 1: Welcome -->
+
         <div id="page1" class="page active flex-col items-center justify-center h-full text-center space-y-6">
             <h1 class="text-3xl font-bold text-pink-600 handwritten">Happy Birthday, Amrutha! 🌸</h1>
-            <!-- Placeholder for cute gif -->
+
             <div class="w-48 h-48 bg-pink-200 rounded-2xl flex items-center justify-center shadow-inner">
                 <span class="text-4xl">🐼❤️🐻</span>
             </div>
+
             <p class="text-gray-700 font-medium">Are you excited for what's next?</p>
+
             <div class="flex space-x-4">
-                <button onclick="nextPage(2)" class="px-6 py-2 bg-pink-500 text-white font-semibold rounded-full shadow-md hover:bg-pink-600 transition">Yes!</button>
-                <button onclick="alert('Wrong answer! Try again 😉')" class="px-6 py-2 bg-gray-300 text-gray-600 font-semibold rounded-full shadow-md transition">No</button>
+                <button onclick="nextPage(2)" class="px-6 py-2 bg-pink-500 text-white font-semibold rounded-full shadow-md hover:bg-pink-600">Yes!</button>
+                <button onclick="alert('Wrong answer! Try again 😉')" class="px-6 py-2 bg-gray-300 rounded-full">No</button>
             </div>
         </div>
 
-        <!-- SCREEN 2: Balloon Pop -->
-        <div id="page2" class="page flex-col items-center justify-center h-full text-center space-y-6 relative">
-            <h2 class="text-2xl font-bold text-pink-600">Pop all 4 balloons!🎈</h2>
-            <div class="grid grid-cols-2 gap-8 my-8 relative w-48 h-48">
-                <div onclick="popBalloon(this)" class="balloon w-16 h-20 bg-red-400 rounded-full flex items-center justify-center text-white cursor-pointer shadow-lg mx-auto">Y</div>
-                <div onclick="popBalloon(this)" class="balloon w-16 h-20 bg-blue-400 rounded-full flex items-center justify-center text-white cursor-pointer shadow-lg mx-auto">O</div>
-                <div onclick="popBalloon(this)" class="balloon w-16 h-20 bg-green-400 rounded-full flex items-center justify-center text-white cursor-pointer shadow-lg mx-auto">U</div>
-                <div onclick="popBalloon(this)" class="balloon w-16 h-20 bg-purple-400 rounded-full flex items-center justify-center text-white cursor-pointer shadow-lg mx-auto">✨</div>
+        <div id="page2" class="page flex-col items-center justify-center h-full text-center space-y-6">
+            <h2 class="text-2xl font-bold text-pink-600">Pop all 4 balloons! 🎈</h2>
+
+            <div class="grid grid-cols-2 gap-8 my-8 w-48 h-48">
+                <div onclick="popBalloon(this)" class="balloon w-16 h-20 bg-red-400 rounded-full flex items-center justify-center text-white cursor-pointer">Y</div>
+                <div onclick="popBalloon(this)" class="balloon w-16 h-20 bg-blue-400 rounded-full flex items-center justify-center text-white cursor-pointer">O</div>
+                <div onclick="popBalloon(this)" class="balloon w-16 h-20 bg-green-400 rounded-full flex items-center justify-center text-white cursor-pointer">U</div>
+                <div onclick="popBalloon(this)" class="balloon w-16 h-20 bg-purple-400 rounded-full flex items-center justify-center text-white cursor-pointer">✨</div>
             </div>
-            <p id="balloonMessage" class="text-xl font-bold text-pink-600 handwritten hidden">You are so special! ✨</p>
-            <button id="btn2" onclick="nextPage(3)" class="px-6 py-2 bg-pink-500 text-white font-semibold rounded-full shadow-md hidden">Continue</button>
+
+            <p id="balloonMessage" class="hidden text-xl font-bold text-pink-600 handwritten">You are so special! ✨</p>
+
+            <button id="btn2" onclick="nextPage(3)" class="hidden px-6 py-2 bg-pink-500 text-white rounded-full">Continue</button>
         </div>
 
-        <!-- SCREEN 3: Candle Blow -->
         <div id="page3" class="page flex-col items-center justify-center h-full text-center space-y-6">
             <h2 class="text-2xl font-bold text-pink-600">Blow the candle 🎂</h2>
-            <p class="text-sm text-gray-500">Tap the flame to blow it out and make a wish!</p>
-            <div class="relative flex flex-col items-center justify-center my-6">
-                <!-- Flame -->
-                <div id="flame" onclick="blowCandle()" class="w-6 h-8 bg-orange-500 rounded-full animate-pulse cursor-pointer shadow-lg origin-bottom transition-all"></div>
-                <!-- Candle -->
-                <div class="w-4 h-16 bg-pink-300 rounded-t shadow-md"></div>
-                <!-- Cake -->
-                <div class="w-32 h-16 bg-amber-100 border-t-4 border-pink-400 rounded-b shadow-md flex items-center justify-center text-xl">🍓</div>
+
+            <div class="relative flex flex-col items-center my-6">
+                <div id="flame" onclick="blowCandle()" class="w-6 h-8 bg-orange-500 rounded-full animate-pulse cursor-pointer"></div>
+                <div class="w-4 h-16 bg-pink-300"></div>
+                <div class="w-32 h-16 bg-amber-100 border-t-4 border-pink-400 rounded-b flex items-center justify-center">🍓</div>
             </div>
-            <p id="wishMessage" class="text-lg font-medium text-gray-700 hidden">Close your eyes and make a wish... 🤫</p>
-            <button id="btn3" onclick="nextPage(4)" class="px-6 py-2 bg-pink-500 text-white font-semibold rounded-full shadow-md hidden">Next</button>
+
+            <p id="wishMessage" class="hidden">Close your eyes and make a wish... 🤫</p>
+
+            <button id="btn3" onclick="nextPage(4)" class="hidden px-6 py-2 bg-pink-500 text-white rounded-full">Next</button>
         </div>
 
-        <!-- SCREEN 4: Bouquet Reveal -->
         <div id="page4" class="page flex-col items-center justify-center h-full text-center space-y-6">
             <h2 class="text-2xl font-bold text-pink-600">Your Rose Bouquet 💐</h2>
-            <div class="text-6xl animate-bounce my-6">🌹✨🌹</div>
-            <p class="text-gray-700 font-medium italic">"My love for you blooms more beautifully with each passing day."</p>
-            <button onclick="nextPage(5)" class="px-6 py-2 bg-pink-500 text-white font-semibold rounded-full shadow-md">Open My Letter 💌</button>
+            <div class="text-6xl animate-bounce">🌹✨🌹</div>
+            <p class="italic">"My love for you blooms more beautifully with each passing day."</p>
+            <button onclick="nextPage(5)" class="px-6 py-2 bg-pink-500 text-white rounded-full">Open My Letter 💌</button>
         </div>
 
-        <!-- SCREEN 5: The Letter -->
         <div id="page5" class="page flex-col items-center justify-between h-full space-y-4">
-            <h2 class="text-xl font-bold text-pink-600 text-center">A Message From My Heart</h2>
-            <div class="bg-white p-5 rounded-2xl shadow-inner h-2/3 overflow-y-auto text-gray-800 space-y-3 border border-pink-200">
-                <p class="font-bold text-pink-500 handwritten text-2xl">Dear Amrutha,</p>
-                <p class="text-sm leading-relaxed">Happy Birthday to my most favorite person! I am incredibly grateful to have you in my life, sharing in all these beautiful moments and planning our journey together.</p>
-                <p class="text-sm leading-relaxed">You bring so much warmth, joy, and love into my world. I cherish every single smile and everyday conversation we share.</p>
-                <p class="text-sm leading-relaxed font-semibold text-pink-600">Here's to celebrating you today, tomorrow, and always. ❤️</p>
+            <h2 class="text-xl font-bold text-pink-600">A Message From My Heart</h2>
+
+            <div class="bg-white p-5 rounded-2xl shadow-inner h-2/3 overflow-y-auto">
+                <p class="handwritten text-2xl text-pink-500">Dear Amrutha,</p>
+                <p>Happy Birthday to my most favorite person! I am incredibly grateful to have you in my life.</p>
+                <p>You bring so much warmth, joy, and love into my world.</p>
+                <p class="font-semibold text-pink-600">Here's to celebrating you today, tomorrow, and always. ❤️</p>
             </div>
-            <button onclick="nextPage(6)" class="w-full py-2 bg-pink-500 text-white font-semibold rounded-full shadow-md text-center">One Last Thing... ✨</button>
+
+            <button onclick="nextPage(6)" class="w-full py-2 bg-pink-500 text-white rounded-full">One Last Thing... ✨</button>
         </div>
 
-        <!-- SCREEN 6: Outro -->
         <div id="page6" class="page flex-col items-center justify-center h-full text-center space-y-6">
             <h2 class="text-3xl font-bold text-pink-600 handwritten">Forever Yours.</h2>
             <div class="text-6xl">🥰💍✨</div>
-            <p class="text-gray-700 font-medium">Once again, Happy Birthday, Amrutha!</p>
-            <p class="text-xs text-gray-400">Made with ❤️ just for you</p>
+            <p>Once again, Happy Birthday, Amrutha!</p>
+            <p class="text-xs text-gray-500">Made with ❤️ just for you</p>
         </div>
 
     </div>
 
-    <!-- Page Interaction Control Scripts -->
-    <script>
-        function nextPage(pageNumber) {
-            // Trigger music playback on the first transition
-            if (pageNumber === 2) {
-                const music = document.getElementById('bgMusic');
-                music.play().catch(error => {
-                    console.log("Audio autoplay restriction handled:", error);
-                });
-            }
+<script>
+let musicStarted=false;
+let poppedCount=0;
 
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            document.getElementById(`page${pageNumber}`).classList.add('active');
-        }
+function nextPage(pageNumber){
 
-        let poppedCount = 0;
-        function popBalloon(element) {
-            if (!element.classList.contains('popped')) {
-                element.classList.add('popped');
-                poppedCount++;
-                if (poppedCount === 4) {
-                    document.getElementById('balloonMessage').classList.remove('hidden');
-                    document.getElementById('btn2').classList.remove('hidden');
-                }
-            }
-        }
+    if(!musicStarted){
+        const music=document.getElementById("bgMusic");
+        music.volume=0.5;
+        music.play().catch(e=>console.log(e));
+        musicStarted=true;
+    }
 
-        function blowCandle() {
-            const flame = document.getElementById('flame');
-            flame.style.transform = 'scale(0)';
-            flame.style.opacity = '0';
-            document.getElementById('wishMessage').classList.remove('hidden');
-            document.getElementById('btn3').classList.remove('hidden');
-        }
-    </script>
+    document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+    document.getElementById("page"+pageNumber).classList.add("active");
+}
+
+function popBalloon(el){
+    if(el.classList.contains("popped")) return;
+
+    el.classList.add("popped");
+    poppedCount++;
+
+    if(poppedCount===4){
+        document.getElementById("balloonMessage").classList.remove("hidden");
+        document.getElementById("btn2").classList.remove("hidden");
+    }
+}
+
+function blowCandle(){
+    const flame=document.getElementById("flame");
+    flame.style.transform="scale(0)";
+    flame.style.opacity="0";
+
+    document.getElementById("wishMessage").classList.remove("hidden");
+    document.getElementById("btn3").classList.remove("hidden");
+}
+</script>
+
 </body>
 </html>
