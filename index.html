@@ -1,152 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Amrutha ❤️</title>
-
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@400;600&display=swap');
-
-        body{
-            font-family:'Poppins',sans-serif;
-            background:#ffeef2;
-        }
-
-        .handwritten{font-family:'Caveat',cursive;}
-        .page{display:none;}
-        .page.active{display:flex;}
-        .balloon{transition:transform .2s,opacity .2s;}
-        .balloon.popped{
-            transform:scale(0);
-            opacity:0;
-            pointer-events:none;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Amrutha ❤️</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;400;600&display=swap');
+body{margin:0;font-family:Poppins,sans-serif;background:linear-gradient(135deg,#ffd6e8,#fff0f6);overflow:hidden}
+.page{display:none}.active{display:flex}
+.card{width:min(430px,95vw);height:88vh;margin:3vh auto;background:rgba(255,255,255,.35);backdrop-filter:blur(14px);
+border-radius:28px;padding:24px;box-shadow:0 15px 40px rgba(255,105,180,.3);flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.btn{background:#ff4d88;color:#fff;border:none;padding:12px 26px;border-radius:999px;cursor:pointer;font-weight:600}
+.hand{font-family:Caveat,cursive}
+.hidden{display:none}
+.heart{position:fixed;font-size:24px;animation:rise 8s linear infinite;pointer-events:none}
+@keyframes rise{from{transform:translateY(100vh)}to{transform:translateY(-120vh)}}
+.balloon{font-size:52px;cursor:pointer;transition:.2s}.pop{transform:scale(0);opacity:0}
+</style>
 </head>
+<body>
+<audio id="bgMusic" preload="auto" loop><source src="song.mp3" type="audio/mpeg"></audio>
+<div id="hearts"></div>
 
-<body class="flex items-center justify-center min-h-screen p-4 overflow-hidden select-none">
+<div id="p1" class="card page active">
+<h1 class="hand text-6xl text-pink-600">Happy Birthday ❤️</h1>
+<div class="text-7xl my-4">🥰</div>
+<p>Tap the button to begin your surprise...</p><br>
+<button class="btn" onclick="next(2)">Start Surprise 🎁</button>
+</div>
 
-    <!-- Background music -->
-    <audio id="bgMusic" preload="auto" loop>
-        <source src="song.mp3" type="audio/mpeg">
-    </audio>
+<div id="p2" class="card page">
+<h2 class="hand text-5xl text-pink-600">Find My Hearts ❤️</h2>
+<p>Tap all 5 hearts.</p>
+<div id="heartGame" class="grid grid-cols-3 gap-4 text-5xl my-5">
+<span onclick="hit(this)">❤️</span>
+<span onclick="hit(this)">❤️</span>
+<span onclick="hit(this)">❤️</span>
+<span onclick="hit(this)">❤️</span>
+<span onclick="hit(this)">❤️</span>
+<span>🌸</span>
+</div>
+<button id="b2" class="btn hidden" onclick="next(3)">You Found Them 💖</button>
+</div>
 
-    <div class="w-full max-w-md h-[85vh] bg-pink-100 rounded-3xl shadow-2xl border-4 border-white relative flex flex-col justify-between p-6 overflow-hidden">
+<div id="p3" class="card page">
+<h2 class="hand text-5xl text-pink-600">Scratch My Message ✨</h2>
+<p class="mb-3">Click below to reveal.</p>
+<button class="btn" onclick="reveal()">Reveal ❤️</button>
+<p id="secret" class="hidden mt-6 text-xl text-pink-600">You are the best thing that has ever happened to me. 🥹❤️</p><br>
+<button id="b3" class="btn hidden" onclick="next(4)">Continue</button>
+</div>
 
-        <div id="page1" class="page active flex-col items-center justify-center h-full text-center space-y-6">
-            <h1 class="text-3xl font-bold text-pink-600 handwritten">Happy Birthday, Amrutha! 🌸</h1>
+<div id="p4" class="card page">
+<h2 class="hand text-5xl text-pink-600">Blow the Candle 🎂</h2>
+<div id="flame" onclick="blow()" style="font-size:90px;cursor:pointer">🕯️</div>
+<p id="wish" class="hidden mt-3">May every wish you make today come true. ❤️</p><br>
+<button id="b4" class="btn hidden" onclick="next(5)">Open Letter 💌</button>
+</div>
 
-            <div class="w-48 h-48 bg-pink-200 rounded-2xl flex items-center justify-center shadow-inner">
-                <span class="text-4xl">🐼❤️🐻</span>
-            </div>
+<div id="p5" class="card page">
+<h2 class="hand text-5xl text-pink-600">A Letter From My Heart</h2>
+<div style="background:white;border-radius:18px;padding:16px;height:45%;overflow:auto;text-align:left">
+<p>Dear Amrutha, ❤️</p>
+<p>Thank you for making ordinary days feel magical. Your smile, kindness and love mean everything to me.</p>
+<p>I hope this birthday brings you endless happiness, laughter and beautiful memories.</p>
+<p><b>I love you today, tomorrow and always. 💖</b></p>
+</div><br>
+<button class="btn" onclick="next(6)">Final Surprise ✨</button>
+</div>
 
-            <p class="text-gray-700 font-medium">Are you excited for what's next?</p>
-
-            <div class="flex space-x-4">
-                <button onclick="nextPage(2)" class="px-6 py-2 bg-pink-500 text-white font-semibold rounded-full shadow-md hover:bg-pink-600">Yes!</button>
-                <button onclick="alert('Wrong answer! Try again 😉')" class="px-6 py-2 bg-gray-300 rounded-full">No</button>
-            </div>
-        </div>
-
-        <div id="page2" class="page flex-col items-center justify-center h-full text-center space-y-6">
-            <h2 class="text-2xl font-bold text-pink-600">Pop all 4 balloons! 🎈</h2>
-
-            <div class="grid grid-cols-2 gap-8 my-8 w-48 h-48">
-                <div onclick="popBalloon(this)" class="balloon w-16 h-20 bg-red-400 rounded-full flex items-center justify-center text-white cursor-pointer">Y</div>
-                <div onclick="popBalloon(this)" class="balloon w-16 h-20 bg-blue-400 rounded-full flex items-center justify-center text-white cursor-pointer">O</div>
-                <div onclick="popBalloon(this)" class="balloon w-16 h-20 bg-green-400 rounded-full flex items-center justify-center text-white cursor-pointer">U</div>
-                <div onclick="popBalloon(this)" class="balloon w-16 h-20 bg-purple-400 rounded-full flex items-center justify-center text-white cursor-pointer">✨</div>
-            </div>
-
-            <p id="balloonMessage" class="hidden text-xl font-bold text-pink-600 handwritten">You are so special! ✨</p>
-
-            <button id="btn2" onclick="nextPage(3)" class="hidden px-6 py-2 bg-pink-500 text-white rounded-full">Continue</button>
-        </div>
-
-        <div id="page3" class="page flex-col items-center justify-center h-full text-center space-y-6">
-            <h2 class="text-2xl font-bold text-pink-600">Blow the candle 🎂</h2>
-
-            <div class="relative flex flex-col items-center my-6">
-                <div id="flame" onclick="blowCandle()" class="w-6 h-8 bg-orange-500 rounded-full animate-pulse cursor-pointer"></div>
-                <div class="w-4 h-16 bg-pink-300"></div>
-                <div class="w-32 h-16 bg-amber-100 border-t-4 border-pink-400 rounded-b flex items-center justify-center">🍓</div>
-            </div>
-
-            <p id="wishMessage" class="hidden">Close your eyes and make a wish... 🤫</p>
-
-            <button id="btn3" onclick="nextPage(4)" class="hidden px-6 py-2 bg-pink-500 text-white rounded-full">Next</button>
-        </div>
-
-        <div id="page4" class="page flex-col items-center justify-center h-full text-center space-y-6">
-            <h2 class="text-2xl font-bold text-pink-600">Your Rose Bouquet 💐</h2>
-            <div class="text-6xl animate-bounce">🌹✨🌹</div>
-            <p class="italic">"My love for you blooms more beautifully with each passing day."</p>
-            <button onclick="nextPage(5)" class="px-6 py-2 bg-pink-500 text-white rounded-full">Open My Letter 💌</button>
-        </div>
-
-        <div id="page5" class="page flex-col items-center justify-between h-full space-y-4">
-            <h2 class="text-xl font-bold text-pink-600">A Message From My Heart</h2>
-
-            <div class="bg-white p-5 rounded-2xl shadow-inner h-2/3 overflow-y-auto">
-                <p class="handwritten text-2xl text-pink-500">Dear Amrutha,</p>
-                <p>Happy Birthday to my most favorite person! I am incredibly grateful to have you in my life.</p>
-                <p>You bring so much warmth, joy, and love into my world.</p>
-                <p class="font-semibold text-pink-600">Here's to celebrating you today, tomorrow, and always. ❤️</p>
-            </div>
-
-            <button onclick="nextPage(6)" class="w-full py-2 bg-pink-500 text-white rounded-full">One Last Thing... ✨</button>
-        </div>
-
-        <div id="page6" class="page flex-col items-center justify-center h-full text-center space-y-6">
-            <h2 class="text-3xl font-bold text-pink-600 handwritten">Forever Yours.</h2>
-            <div class="text-6xl">🥰💍✨</div>
-            <p>Once again, Happy Birthday, Amrutha!</p>
-            <p class="text-xs text-gray-500">Made with ❤️ just for you</p>
-        </div>
-
-    </div>
+<div id="p6" class="card page">
+<div class="text-8xl">🌹💍🥰</div>
+<h1 class="hand text-6xl text-pink-600">Will You Keep Smiling Forever?</h1>
+<div class="mt-5 flex gap-4">
+<button class="btn" onclick="celebrate()">YES ❤️</button>
+<button class="btn" id="noBtn" onmouseover="moveNo()">NO 🙈</button>
+</div>
+<p id="final" class="hidden mt-6 text-pink-600 text-xl">🥹 I knew you'd choose YES! Happy Birthday My Love ❤️</p>
+</div>
 
 <script>
-let musicStarted=false;
-let poppedCount=0;
-
-function nextPage(pageNumber){
-
-    if(!musicStarted){
-        const music=document.getElementById("bgMusic");
-        music.volume=0.5;
-        music.play().catch(e=>console.log(e));
-        musicStarted=true;
-    }
-
-    document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-    document.getElementById("page"+pageNumber).classList.add("active");
+let started=false,found=0;
+function next(n){
+ if(!started){
+  let m=document.getElementById("bgMusic");
+  m.volume=.5;
+  m.play().catch(()=>{});
+  started=true;
+ }
+ document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
+ document.getElementById("p"+n).classList.add("active");
 }
-
-function popBalloon(el){
-    if(el.classList.contains("popped")) return;
-
-    el.classList.add("popped");
-    poppedCount++;
-
-    if(poppedCount===4){
-        document.getElementById("balloonMessage").classList.remove("hidden");
-        document.getElementById("btn2").classList.remove("hidden");
-    }
+function hit(e){
+ if(e.classList.contains("pop"))return;
+ e.classList.add("pop");found++;
+ if(found==5)document.getElementById("b2").classList.remove("hidden");
 }
-
-function blowCandle(){
-    const flame=document.getElementById("flame");
-    flame.style.transform="scale(0)";
-    flame.style.opacity="0";
-
-    document.getElementById("wishMessage").classList.remove("hidden");
-    document.getElementById("btn3").classList.remove("hidden");
+function reveal(){
+ document.getElementById("secret").classList.remove("hidden");
+ document.getElementById("b3").classList.remove("hidden");
+}
+function blow(){
+ flame.innerHTML="💨";
+ wish.classList.remove("hidden");
+ b4.classList.remove("hidden");
+}
+function moveNo(){
+ const b=document.getElementById("noBtn");
+ b.style.position="absolute";
+ b.style.left=Math.random()*250+"px";
+ b.style.top=Math.random()*500+"px";
+}
+function celebrate(){
+ document.getElementById("final").classList.remove("hidden");
+ for(let i=0;i<60;i++){
+  let h=document.createElement("div");
+  h.className="heart";
+  h.textContent=Math.random()>.5?"❤️":"🎉";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(4+Math.random()*4)+"s";
+  document.body.appendChild(h);
+ }
 }
 </script>
-
 </body>
 </html>
